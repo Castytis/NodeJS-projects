@@ -1,7 +1,41 @@
 body {
     font-family: 'Roboto';
+    color:rgb(4, 78, 139);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    text-align: center;
+    margin-top: 16px;
+}
+
+header {
+    margin-top: 16px;
+    margin-bottom: 32px;
 }
 
 h1 {
-    color:rgb(69, 123, 238)
+    color:rgb(69, 123, 238);
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+header a {
+    color:rgba(67, 122, 241, 0.651);
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+header a:hover {
+    color:rgb(52, 87, 182)
+}
+
+.main-content {
+    flex-grow: 1;
 }

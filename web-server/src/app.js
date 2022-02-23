@@ -24,14 +24,28 @@ app.get('/', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    res.render('index' ,{
+    res.render('about' ,{
         title: "About"
     })
 })
 
 app.get('/help', (req, res) => {
-    res.render('index' ,{
+    res.render('help' ,{
         title: "Help"
+    })
+})
+
+app.get('/help/*', (req, res) => {
+    res.render('404error', {
+        title: '404',
+        error: 'Help article not found'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404error', {
+        title: '404',
+        error: 'Page not found'
     })
 })
 
