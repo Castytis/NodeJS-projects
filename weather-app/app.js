@@ -1,13 +1,23 @@
-const request = require('request');
 const geoCode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
-geoCode("Groningen", (error, data) =>{
-    console.log(data)
-})
+let location = process.argv[2];
 
-forecast(20.800, 20.133, (error, data) => {
-    console.log('Error', error)
-    console.log('Data', data)
-})
-
+if (location){
+    geoCode(location, (error, { latitude, longitude, location} = {}) =>{
+        if (error){
+            console.log(error)
+        } else {
+            forecast(latitude, longitude, (error, forecastData) => {
+                if (error) {
+                    console.log(error)
+                } else {
+                    console.log(location)
+                    console.log(forecastData)
+                }
+            })
+        }
+    })
+} else {
+    console.log("Location not provided.")
+}
