@@ -1,5 +1,6 @@
 const express = require('express');
 
+const {sendWelcomeEmail, cancelationEmail} = require('../emails/account')
 const sharp = require('sharp')
 const multer = require('multer')
 const upload = multer({
@@ -22,7 +23,8 @@ const router = new express.Router();
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body)
-    
+    sendWelcomeEmail(user.email, user.name)
+
     try {
 
         const token = await user.generateAuthToken()
@@ -61,6 +63,8 @@ router.patch('/users/me', auth, async (req, res) => {
 })
 
 router.delete('/users/me', auth, async (req, res) => {
+    cancelationEmail(req.user.email, req.user.name)
+
     try {
         await req.user.remove()
         res.send(req.user)
