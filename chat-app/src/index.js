@@ -31,13 +31,13 @@ io.on('connection', (socket) => {
         callback('Delivered')
     })
 
-    socket.on('disconnect', () => {
-        io.emit('message', 'A user has left!')
+    socket.on('sendLocation', (location, callback) => {
+        io.emit('locationMessage', `https://www.google.com/maps?q=${location.latitude},${location.longitude}`)
+        callback('Location shared')
     })
 
-    socket.on('sendLocation', (location, callback) => {
-        io.emit('message', `https://www.google.com/maps?q=${location.latitude},${location.longitude}`)
-        callback('Location shared')
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left!')
     })
 })
 
