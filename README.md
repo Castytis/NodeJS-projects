@@ -1,3 +1,3 @@
-# NodeJS-projects
+# NodeJS projects
 
 Various node.js projects
